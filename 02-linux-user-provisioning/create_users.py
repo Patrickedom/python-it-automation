@@ -8,19 +8,19 @@ from pathlib import Path
 # False = Actually runs /sbin/useradd on a real Linux machine (requires sudo)
 DRY_RUN = True
 
-# Automatically finds your Desktop regardless of your username or OS
-cwd = Path.home() / "Desktop" / "linux_provisioning"
-input_file = cwd / "data" / "users_in.csv"
-output_file = cwd / "data" / "users_out.csv"
+# Dynamically set paths relative to this script's directory
+BASE_DIR = Path(__file__).resolve().parent
+INPUT_FILE = BASE_DIR / "data" / "users_in.csv"
+OUTPUT_FILE = BASE_DIR / "data" / "users_out.csv"
 
 # Verify the input file exists before running
-if not input_file.exists():
-    print(f"Error: Could not find {input_file}")
-    print("Please make sure 'linux_provisioning/data/users_in.csv' is on your Desktop.")
+if not INPUT_FILE.exists():
+    print(f"Error: Could not find {INPUT_FILE}")
+    print("Please make sure 'data/users_in.csv' is set up before running.")
     exit(1)
 
-with open(input_file, "r", newline="", encoding="utf-8") as file_input, \
-     open(output_file, "w", newline="", encoding="utf-8") as file_output:
+with open(INPUT_FILE, "r", newline="", encoding="utf-8") as file_input, \
+     open(OUTPUT_FILE, "w", newline="", encoding="utf-8") as file_output:
 
     reader = csv.DictReader(file_input)
     writer = csv.DictWriter(file_output, fieldnames=reader.fieldnames)
@@ -49,4 +49,4 @@ with open(input_file, "r", newline="", encoding="utf-8") as file_input, \
         # Write the updated row (with password) to users_out.csv
         writer.writerow(user)
 
-print(f"\nDone! Check your generated passwords in: {output_file}")
+print(f"\nDone! Check your generated passwords in: {OUTPUT_FILE}")
