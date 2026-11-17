@@ -221,3 +221,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated output data and sensitive credentials
+**/data/users_out.csv
+**/data/active_users_out.csv
