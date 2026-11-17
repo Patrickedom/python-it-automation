@@ -13,4 +13,5 @@ A collection of Python scripts built to automate everyday system administration 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/Patrickedom/python-it-automation/blob/main/.gitignore) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
